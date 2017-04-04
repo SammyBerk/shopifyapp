@@ -1,0 +1,69 @@
+.subpage {
+  #site-header{
+    background: #8f8e8a url('/images/background.jpg') center top no-repeat;
+    background-size: cover;
+  }
+}
+
+#site-header{
+  position: fixed;
+  top: 0;
+  z-index: 90;
+  width: 100%;
+  height: rem-calc(130);
+
+  a{
+    color: #cccccc;
+  }
+
+  .mini-nav{
+    position: relative;
+    z-index: 9;
+    text-align: right;
+    padding: rem-calc(5 10);
+    .mini-nav-item{
+      display: inline-block;
+      margin-left: rem-calc(10);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      &.mini-nav-item-cart{
+        position: relative;
+        bottom: -2px;
+        color: $grey80;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #site-logo{
+    position: absolute;
+    top: rem-calc(40);
+    left: rem-calc(30);
+  }
+
+  #site-nav{
+    position: absolute;
+    top: rem-calc(40);
+    right: 0;
+    background-color: rgba($black, 0.4);
+    @include flex();
+    padding: rem-calc(15 30);
+    width: 50%;
+
+    .site-nav-item{
+      display: inline-block;
+      text-transform: uppercase;
+      margin-right: rem-calc(30);
+    }
+
+    #site-nav-upload{
+      position: relative;
+      width: rem-calc(300);
+      img{
+        position: absolute;
+        top: rem-calc(-38);
+      }
+    }
+  }
+}

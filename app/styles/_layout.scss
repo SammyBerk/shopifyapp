@@ -1,0 +1,54 @@
+$nav-height: 90;
+$footer-height: 120;
+
+body{
+}
+
+#main{
+  padding: rem-calc(150 0 0);
+
+  &.subpage{
+    padding-top: rem-calc(180);
+  }
+}
+
+#main-container{
+  min-height: calc(100vh - #{rem-calc($nav-height + $footer-height)});
+}
+
+.container{
+  max-width: rem-calc(1000);
+  margin: 0 auto;
+}
+
+.loader{
+  @include flex();
+  @include flex-align(center, middle);
+  min-height: calc(100vh - #{rem-calc($nav-height + $footer-height)});
+  color: $primary-color;
+}
+
+#site-footer{
+  @include flex();
+  @include flex-align(center);
+  flex-direction: column;
+  text-align: center;
+  background-color: $black;
+  margin-top: rem-calc(60);
+  padding: rem-calc(60 0);
+  color: $white;
+
+  .footer-nav{
+    padding: 0;
+    margin-bottom: rem-calc(30);
+    li{
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-right: rem-calc(40);
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}
