@@ -1,0 +1,9 @@
+{
+	"oauth": {
+		"api_key": "269d44af791f364f7305df8e0da5f895",
+		"client_secret": "1492b1a7ccf63259e0b9f203a338dfd8",
+		"redirect_uri": "http://localhost:3000/auth/shopify/callback",
+		"scope": "read_themes,write_themes,write_customers,read_script_tags,write_script_tags,read_products,write_products"
+	},
+	"app_url": "//localhost:3000"
+}
