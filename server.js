@@ -70,12 +70,6 @@ app.post('/new_product', function(req, res) {
 	});
 });
 
-app.post('/orders', function(req, res) {
-    shopify.post('/admin/orders.json', postData, function(err, resp) {
-	  if(err) return next(error);
-	  return res.json(resp);
-	});
-});
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
