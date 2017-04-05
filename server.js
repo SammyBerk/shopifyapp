@@ -50,62 +50,30 @@ shopifyAPI.prototype.exchange_temporary_token = function(query_params, callback)
  }
 
 app.post('/new_product', function(req, res) {
-    var postData = {
-	  product: {
-	    title: 'Dummy 151',
-	    body_html: '<strong>Good T-Shirt!</strong>',
-	    vendor: 'Nike',
-	    product_type: 'T-Shirt',
-	    variants: [
-	      {
-	        option1: 'First',
-	        price: '10.00',
-	        sku: '123'
-	      },
-	      {
-	        option1: 'Second',
-	        price: '20.00',
-	        sku: '123'
-	      }
-	    ]
-	  }
-	};
-
-	shopify.post('/admin/products.json', postData, function(err, resp, headers) {
-	  console.log(data); // Data contains product json information 
-	  console.log(headers); // Headers returned from request 
-	  // if(err) throw err;
-	  // return res.json(resp);
+    data = {
+     product: {
+            title: req.body.title,
+            body_html: req.body.body_html,
+            images: [
+                {
+                    src: req.body.image_src
+                }
+            ],
+            vendor: "Vendor",
+            product_type: "Type"
+        }
+    }
+    
+	shopify.post('/admin/products.json', data, function(err, resp, headers) {
+	  if(err) return next(error);
+	  return res.json(resp);
 	});
 });
 
 app.post('/orders', function(req, res) {
-    var postData = {
-	  product: {
-	    title: 'Dummy 151',
-	    body_html: '<strong>Good T-Shirt!</strong>',
-	    vendor: 'Nike',
-	    product_type: 'T-Shirt',
-	    variants: [
-	      {
-	        option1: 'First',
-	        price: '10.00',
-	        sku: 123
-	      },
-	      {
-	        option1: 'Second',
-	        price: '20.00',
-	        sku: '123'
-	      }
-	    ]
-	  }
-	};
-
-	shopify.post('/admin/orders.json', postData, function(err, resp) {
-	  // if(err) throw err;
-	  // return res.json(resp);
-	  console.log(data); // Data contains product json information 
-	  console.log(headers);
+    shopify.post('/admin/orders.json', postData, function(err, resp) {
+	  if(err) return next(error);
+	  return res.json(resp);
 	});
 });
 
@@ -115,16 +83,23 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
 }
 
 
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 var server_ip_address = '127.0.0.1';
